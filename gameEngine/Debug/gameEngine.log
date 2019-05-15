@@ -1,0 +1,4 @@
+﻿D:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(411,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (gameEngine.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+EGanesis.obj : error LNK2019: unresolved external symbol _glfwInit referenced in function "public: void __thiscall EGanesis::gameLoop(void)" (?gameLoop@EGanesis@@QAEXXZ)
+D:\workspace\gameEngine\opengl dir\lib\glfw3.lib : warning LNK4272: library machine type 'x64' conflicts with target machine type 'x86'
+D:\workspace\gameEngine\gameEngine\Debug\application.exe : fatal error LNK1120: 1 unresolved externals
