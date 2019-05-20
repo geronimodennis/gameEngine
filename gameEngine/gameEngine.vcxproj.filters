@@ -20,6 +20,9 @@
     <ClInclude Include="EGanesis.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="triableMeshe.cpp">
+      <Filter>engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="application.cpp">

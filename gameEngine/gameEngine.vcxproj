@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="application.h" />
     <ClInclude Include="EGanesis.h" />
+    <ClInclude Include="triableMeshe.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="application.cpp" />
