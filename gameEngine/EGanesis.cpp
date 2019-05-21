@@ -24,22 +24,36 @@ void _check_gl_error(const char* file, int line) {
 	}
 }
 
+void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+{
+	// make sure the viewport matches the new window dimensions; note that width and 
+	// height will be significantly larger than specified on retina displays.
+	glViewport(0, 0, width, height);
+}
+
+void initGlad() {
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress));
+	{
+		std::cout << "Failed to initialize GLAD" << std::endl;
+	}
+}
+
 GLFWwindow* EGanesis::setupWindow()
 {
+
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
 	GLFWwindow* window = glfwCreateWindow(1000, 1000, "gameEngine", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();
 	}
-	glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE);
-
 
 	glfwMakeContextCurrent(window);
-	glfwGetFramebufferSize(window, &width, &height);
+	//glfwGetFramebufferSize(window, &width, &height);
+	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 	return window;
 }
 
@@ -52,24 +66,20 @@ EGanesis::EGanesis()
 
 
 
-
-
 void EGanesis::gameLoop()
 {
 	glfwInit();
-	triableMeshe* tri = new triableMeshe();
-
 	GLFWwindow* window = setupWindow();
-	gladLoadGL();
+	initGlad();
+	TriangleMesh* tri = new TriangleMesh();
+
 	while (!(isRunning = glfwWindowShouldClose(window)))
 	{
 
-
-
-		glViewport(0, 0, width, height);
+		//glViewport(0, 0, width, height);
 		glClearColor(ENGINE_CLEAR_COLOR[0], ENGINE_CLEAR_COLOR[1], ENGINE_CLEAR_COLOR[2],1.0f);
+		//glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
-		
 
 		tri->draw();
 
